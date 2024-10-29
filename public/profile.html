@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .nav-bar {
+            background-color: #333;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-link {
+            margin: 0 20px;
+            color: #fff;
+            text-decoration: none;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        .nav-link.active {
+            color: #f39c12;
+            font-weight: bold;
+            border-bottom: 2px solid #f39c12;
+        }
+
+        .nav-link:hover {
+            color: #ccc;
+        }
+
+        .brand-logo, .profile-image {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            border: 2px solid #fff;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .profile-image:hover, .brand-logo:hover {
+            transform: scale(1.1);
+        }
+
+        .profile-container {
+            margin: 40px;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            color: #333;
+            font-family: 'Georgia', serif;
+        }
+
+        .profile-info {
+            display: flex;
+            align-items: center;
+        }
+
+        .profile-image-large {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-right: 20px;
+        }
+
+        .profile-details h2 {
+            margin: 0;
+            color: #333;
+        }
+
+        .profile-details p {
+            margin: 5px 0;
+            color: #666;
+        }
+
+        .profile-details button {
+            padding: 10px 20px;
+            background-color: #f39c12;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .profile-details button:hover {
+            background-color: #e67e22;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="brand-logo-container">
+            <img src="./brandlogo.jpeg" alt="Brand Logo" class="brand-logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/home.html" class="nav-link">Home</a></li>
+            <li><a href="/profile.html" class="nav-link">Profile</a></li>
+            <li><a href="/about.html" class="nav-link">About Us</a></li>
+            <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+        </ul>
+        <div class="profile-image-container">
+            <img src="./profile.jpeg" alt="Profile Image" class="profile-image">
+        </div>
+    </nav>
+
+    <div class="profile-container">
+        <h1>User Profile</h1>
+        <div class="profile-info">
+            <img src="./profile.jpeg" alt="User  Image" class="profile-image-large" id="userImage">
+            <div class="profile-details" id="userDetails">
+                <h2 id="userName">John Doe</h2>
+                <p id="userEmail">Email: johndoe@example.com</p>
+                <p id="userBio">Bio: Nature enthusiast and amateur photographer, capturing the beauty of the world through the lens.</p>
+                <button>Edit Profile</button>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Nature Arts. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('logoutBtn').onclick = function() {
+            window.location.href = '/logout'; // Redirect to the logout route
+        };
+
+        const currentPath = window.location.pathname;
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+
+        // Fetch user data
+        async function fetchUserData() {
+            const token = localStorage.getItem('token'); // Assuming you store the token in local storage
+
+            if (!token) {
+                alert('You need to log in first.');
+                window.location.href = '/login'; // Redirect to login if no token
+                return;
+            }
+
+            try {
+                const response = await fetch('/api/user', {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${token}` // Include the token in the request
+                    }
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to fetch user data');
+                }
+
+                const userData = await response.json();
+                displayUserData(userData); // Call function to display user data
+            } catch (error) {
+                console.error('Error fetching user data:', error);
+                alert('Error fetching user data. Please try again.');
+            }
+        }
+
+        // Function to display user data
+        function displayUserData(userData) {
+            const userNameElement = document.getElementById('userName');
+            const userEmailElement = document.getElementById('userEmail');
+            const userBioElement = document.getElementById('userBio');
+            const userImageElement = document.getElementById('userImage');
+
+            userNameElement.textContent = userData.name;
+            userEmailElement.textContent = `Email: ${userData.email}`;
+            userBioElement.textContent = `Bio: ${userData.bio}`;
+            userImageElement.src = userData.image; // Update the user image
+        }
+
+        // Call the function to fetch user data when the page loads
+        window.onload = fetchUserData;
+    </script>
+</body>
+</html>

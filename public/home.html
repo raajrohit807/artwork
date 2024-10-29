@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Art Gallery Home Page</title>
+        <style>
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+            }
+    
+            .nav-bar {
+                background-color: #333;
+                padding: 1rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+    
+            .nav-links {
+                list-style: none;
+                padding: 0;
+                display: flex;
+            }
+    
+            .nav-link {
+                margin: 0 20px;
+                color: #fff;
+                text-decoration: none;
+                transition: background-color 0.3s ease-in-out;
+            }
+    
+            .nav-link.active {
+                color: #f39c12;
+                font-weight: bold;
+                border-bottom: 2px solid #f39c12;
+            }
+    
+            .nav-link:hover {
+                color: #ccc;
+            }
+    
+            .text-overlay {
+                position: absolute;
+                top: 10px;
+                left: 15px;
+                font-size: 28px;
+                color: #fff;
+                text-shadow: 2px 2px 5px rgba(238, 255, 2, 0.993);
+                font-family: 'Arial', sans-serif;
+                z-index: 1;
+            }
+    
+            .nature-arts-description, .famous-artist-description, .famous-arts-description, .animal-pics-description {
+                margin: 20px;
+                padding: 15px;
+                background-color: rgba(255, 255, 255, 0.8);
+                border-radius: 10px;
+                color: #333;
+                font-size: 16px;
+                line-height: 1.6;
+                font-family: 'Georgia', serif;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    
+            .nature-arts-description:hover {
+                background-color: rgba(255, 255, 255, 1);
+                transition: background-color 0.3s ease;
+            }
+    
+            .profile-image, .brand-logo {
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                object-fit: cover;
+                border: 2px solid #fff;
+                transition: transform 0.3s ease-in-out;
+            }
+    
+            .profile-image:hover, .brand-logo:hover {
+                transform: scale(1.1);
+            }
+    
+            .slider-container {
+                width: 100%;
+                height: 350px;
+                overflow: hidden;
+                position: relative;
+                margin-top: 5px;
+                display: flex;
+                align-items: center;
+                background: linear-gradient(135deg, #ff7e5f, #feb47b, #86a8e7, #91eae4);
+                background-size: 400% 400%;
+                animation: gradientBG 4s ease infinite;
+                padding: 15px;
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+                z-index: 0;
+            }
+    
+            @keyframes gradientBG {
+                0% { background-position: 0% 50%; }
+                50% { background-position: 100% 50%; }
+                100% { background-position: 0% 50%; }
+            }
+    
+            .slider {
+                display: flex;
+                width: 400%;
+                animation: slide 16s infinite;
+            }
+    
+            .slide {
+                width: 24%;
+                flex-shrink: 0;
+                margin-right: 10px;
+            }
+    
+            .slide:last-child {
+                margin-right: 0;
+            }
+    
+            .slide img {
+                width: 100%;
+                height: 100%;
+                border-radius: 20px;
+                object-fit: cover;
+            }
+    
+            @keyframes slide {
+                0% { transform: translateX(0%); }
+                20% { transform: translateX(0%); }
+                25% { transform: translateX(-25%); }
+                45% { transform: translateX(-25%); }
+                50% { transform: translateX(-50%); }
+                70% { transform: translateX(-50%); }
+                75% { transform: translateX(-75%); }
+                95% { transform: translateX(-75%); }
+                100% { transform: translateX(0%); }
+            }
+    
+            @media (max-width: 768px) {
+                .text-overlay {
+                    font-size: 20px;
+                }
+    
+                .nature-arts-description, .famous-artist-description, .famous-arts-description, .animal-pics-description {
+                    font-size: 14px;
+                    margin: 10px;
+                    padding: 10px;
+                }
+    
+                .slider-container {
+                    height: 250px;
+                }
+    
+                .slide {
+                    width: 100%;
+                    margin-right: 0;
+                }
+            }
+    
+            .about-container {
+                margin: 20px;
+                padding: 15px;
+                background-color: rgba(255, 255, 255, 0.9);
+                border-radius: 10px;
+                color: #333;
+                font-size: 16px;
+                line-height: 1.6;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    
+            .about-container h1, .about-container h2 {
+                color: #f39c12;
+            }
+    
+            footer {
+                background-color: #333;
+                color: white;
+                text-align: center;
+                padding: 10px;
+                position: relative;
+                bottom: 0px;
+                width: 100%;
+            }
+    
+            footer a {
+                color: #f39c12;
+                text-decoration: none;
+                transition: color 0.3s;
+            }
+    
+            footer a:hover {
+                text-decoration: underline;
+            }
+    
+            main {
+                flex: 1;
+            }
+    
+            .profile-container {
+                margin: 20px;
+                padding: 20px;
+                background-color: rgba(255, 255, 255, 0.9);
+                border-radius: 10px;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+    
+            .profile-info {
+                display: flex;
+                align-items: center;
+            }
+    
+            .profile-image-large {
+                width: 100px;
+                height: 100px;
+                border-radius: 50%;
+                margin-right: 20px;
+            }
+    
+            .profile-details h2 {
+                margin: 0;
+                color: #333;
+            }
+    
+            .profile-details p {
+                margin: 5px 0;
+                color: #666;
+            }
+    
+            .profile-details button {
+                padding: 10px 20px;
+                background-color: #f39c12;
+                color: #fff;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+                transition: background-color 0.3s ease;
+            }
+    
+            .profile-details button:hover {
+                background-color: #e67e22;
+            }
+        </style>
+    </head>
+<body>
+    <nav class="nav-bar">
+        <div class="brand-logo-container">
+            <img src="./brandlogo.jpeg" alt="Brand Logo" class="brand-logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/home.html" class="nav-link">Home</a></li>
+            <li><a href="/profile.html" class="nav-link">Profile</a></li>
+            <li><a href="/about.html" class="nav-link">About Us</a></li>
+            <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+        </ul>
+        <div class="profile-image-container">
+            <img src="./profile.jpeg" alt="Profile Image" class="profile-image">
+        </div>
+    </nav>
+
+    <div class="slider-container">
+        <div class="text-overlay">Nature Arts</div>
+        <div class="slider">
+            <div class="slide"><img src="./art13.jpeg" alt="Image 1"></div>
+            <div class="slide"><img src="./art14.jpeg" alt="Image 2"></div>
+            <div class="slide"><img src="./art15.jpeg" alt="Image 3"></div>
+            <div class="slide"><img src="./art16.jpeg" alt="Image 4"></div>
+        </div>
+    </div>
+    <div class="nature-arts-description">
+        Nature Arts is a vibrant expression of the breathtaking landscapes, flora, and fauna that surround us. It captures the essence of the natural world through various artistic mediums, inviting viewers to explore the intricate details and harmonious beauty of nature. From stunning landscapes to delicate floral compositions, Nature Arts showcases the artistry inherent in the environment.
+    </div>
+
+    <div class="slider-container">
+        <div class="text-overlay">Animal Pics</div>
+        <div class="slider">
+            <div class="slide"><img src="./art9.jpeg" alt="Image 1"></div>
+            <div class="slide"><img src="./art10.jpeg" alt="Image 2"></div>
+            <div class="slide"><img src="./art11.jpeg" alt="Image 3"></div>
+            <div class="slide"><img src="./art12.jpeg" alt="Image 4"></div>
+        </div>
+    </div>
+    <div class="animal-pics-description">
+        The king of the jungle, the lion embodies strength and courage with its powerful presence. Its majestic mane and commanding roar symbolize the untamed beauty of the wild. A true representation of nature's grandeur, the lion reigns supreme in its habitat. Playful Dolphin: Graceful and intelligent, dolphins are known for their playful behavior and social nature.
+    </div>
+
+    <div class="slider-container">
+        <div class="text-overlay">Famous Arts</div>
+        <div class="slider">
+            <div class="slide"><img src="./art1.jpeg" alt="Image 1"></div>
+            <div class="slide"><img src="./art2.jpeg" alt="Image 2"></div>
+            <div class="slide"><img src="./art3.jpeg" alt="Image 3"></div>
+            <div class="slide"><img src="./art4.jpeg" alt="Image 4"></div>
+        </div>
+    </div>
+    <div class="famous-arts-description">
+        Nature Arts is a vibrant expression of the breathtaking landscapes, flora, and fauna that surround us. It captures the essence of the natural world through various artistic mediums, inviting viewers to explore the intricate details and harmonious beauty of nature. From stunning landscapes to delicate floral compositions, Nature Arts showcases the artistry inherent in the environment.
+    </div>
+
+    <div class="slider-container">
+        <div class="text-overlay">Famous Artists</div>
+        <div class="slider">
+            <div class="slide"><img src="./art5.jpeg" alt="Image 1"></div>
+            <div class="slide"><img src="./art6.jpeg" alt="Image 2"></div>
+            <div class="slide"><img src="./art7.jpeg" alt="Image 3"></div>
+            <div class="slide"><img src="./art2.jpeg" alt="Image 4"></div>
+        </div>
+    </div>
+    <div class="famous-artist-description">
+        Vincent van Gogh, a post-impressionist painter, is celebrated for his vivid colors and emotional depth. His masterpieces, such as Starry Night, capture the beauty and turmoil of the human experience. Pablo Picasso, a pioneer of modern art, co-founded the Cubist movement and revolutionized visual expression. His unique style, infused with vibrant colors and Mexican folklore, continues to inspire and resonate today.
+    </div>
+
+
+    <footer style="background-color: #333; color: white; text-align: center; padding: 10px;">
+        <p>© 2024 Art Gallery. All rights reserved. | Follow us on 
+            <a href="#" style="color: #f39c12; text-decoration: none;">Facebook</a>, 
+            <a href="#" style="color: #f39c12; text-decoration: none;">Instagram</a>, and 
+            <a href="#" style="color: #f39c12; text-decoration: none;">Twitter</a>.
+        </p>
+    </footer>
+    
+
+    <script>
+        document.getElementById('logoutBtn').onclick = function() {
+            window.location.href = '/logout'; // Redirect to the logout route
+        };
+
+        const currentPath = window.location.pathname;
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

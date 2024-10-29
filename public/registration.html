@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Online Art Gallery - Registration</title>
+    <link rel="stylesheet" href="/registration.css">
+</head>
+<body>
+    <div class="background">
+        <!-- Animated circles -->
+        <div class="circle circle1"></div>
+        <div class="circle circle2"></div>
+        <div class="circle circle3"></div>
+        <div class="circle circle4"></div>
+        <div class="circle circle5"></div>
+    </div>
+
+    <div class="container">
+        <h2>Art Gallery Registration</h2>
+        <form id="registrationForm" method="post" action="/register" onsubmit="return validareForm()">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name">
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email">
+            
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" placeholder="Enter a password">
+            
+            <label for="contact">Contact Number:</label>
+            <input type="tel" id="contact" name="contact" placeholder="Enter your contact number">
+            
+            <button type="submit">
+                <span>Register Now</span>
+            </button>
+            
+        </form>
+
+        <!-- Login link -->
+        <div class="login-link">
+            <p>Already have an account? <a href="/login.html" class="link-text">Login here</a>.</p>
+        </div>
+
+    </div>
+    
+    <script src="/registration.js"></script>
+</body>
+</html>

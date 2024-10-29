@@ -1,0 +1,181 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    overflow: hidden;
+    height: 100vh;
+}
+
+.background {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, #fc5c7d, #6a82fb);
+    z-index: -1;
+    overflow: hidden;
+}
+
+.circle {
+    position: absolute;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.3);
+    animation: float 10s infinite ease-in-out, blink 2s infinite;
+}
+
+/* Circle styles with different sizes and animations */
+.circle1 {
+    width: 150px;
+    height: 150px;
+    top: 10%;
+    left: 20%;
+    animation-duration: 18s;
+}
+
+.circle2 {
+    width: 100px;
+    height: 100px;
+    top: 30%;
+    left: 60%;
+    animation-duration: 20s;
+}
+
+.circle3 {
+    width: 200px;
+    height: 200px;
+    top: 50%;
+    left: 30%;
+    animation-duration: 20s;
+}
+
+.circle4 {
+    width: 80px;
+    height: 80px;
+    top: 70%;
+    left: 80%;
+    animation-duration: 22s;
+}
+
+.circle5 {
+    width: 120px;
+    height: 120px;
+    top: 80%;
+    left: 10%;
+    animation-duration: 25s;
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-40px);
+    }
+    100% {
+        transform: translateY(0px);
+    }
+}
+
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Container styling */
+.container {
+    background-color: rgba(255, 255, 255, 0.7); /* Set semi-transparent background */
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 30%; /* Set a responsive width */
+    position: absolute; /* Make container move according to window */
+    top: 50%; /* Center vertically */
+    left: 50%; /* Center horizontally */
+    transform: translate(-50%, -50%); /* Center using transform */
+    z-index: 1;
+    /* text-align: center; */
+}
+
+/* Responsive design for smaller screens */
+@media only screen and (max-width: 768px) {
+    .container {
+        width: 80%; /* Set form width to 80% on small screens */
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    input {
+        padding: 8px;
+    }
+
+    button {
+        padding: 8px;
+    }
+}
+
+h2 {
+    text-align: center;
+    color: #333333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-top: 10px;
+    color: #555555;
+}
+
+input {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+}
+
+button {
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #5cb85c;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #4cae4c;
+}
+
+.login-link {
+    margin-top: 15px; /* Space between the form and the link */
+    text-align: center;
+}
+
+.link-text {
+    color: #007BFF; /* Change to your desired link color */
+    text-decoration: none; /* Remove underline from the link */
+    font-weight: bold; /* Make the link text bold */
+}
+
+.link-text:hover {
+    text-decoration: underline; /* Underline on hover for better UX */
+}

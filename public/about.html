@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Art Gallery</title>
+    <link rel="stylesheet" href="/home.css"> <!-- Link to your existing CSS file -->
+</head>
+<body>
+    <nav class="nav-bar">
+        <div class="brand-logo-container">
+            <img src="./brandlogo.jpeg" alt="Brand Logo" class="brand-logo">
+        </div>
+        <ul class="nav-links">
+            <li><a href="/home.html" class="nav-link">Home</a></li>
+            <li><a href="/profile.html" class="nav-link">Profile</a></li>
+            <li><a href="/about.html" class="nav-link active">About Us</a></li>
+            <li><a href="#" class="nav-link" id="logoutBtn">Logout</a></li>
+        </ul>
+        <div class="profile-image-container">
+            <img src="./profile.jpeg" alt="Profile Image" class="profile-image">
+        </div>
+    </nav>
+
+    <div class="about-container">
+        <h1>About Us</h1>
+        <p>Welcome to the Art Gallery, a place where creativity meets passion. Our gallery showcases a diverse range of artworks from various artists, celebrating the beauty and diversity of artistic expression. We aim to inspire, educate, and connect with art lovers and creators from all walks of life.</p>
+        
+        <h2>Our Mission</h2>
+        <p>At the Art Gallery, our mission is to promote art as a vital part of culture and community. We provide a platform for artists to showcase their work, engage with the public, and foster a deeper appreciation for art in all its forms. Through exhibitions, workshops, and events, we strive to make art accessible to everyone.</p>
+        
+        <h2>Contact Us</h2>
+        <p>If you have any questions or would like to learn more about our exhibitions and events, feel free to reach out!</p>
+        <p>Email: info@artgallery.com</p>
+        <p>Phone: +1 (234) 567-890</p>
+    </div>
+
+    <footer>
+        <p>© 2024 Art Gallery. All rights reserved. | Follow us on 
+            <a href="#">Facebook</a>, 
+            <a href="#">Instagram</a>, and 
+            <a href="#">Twitter</a>.
+        </p>
+    </footer>
+
+    <script>
+        document.getElementById('logoutBtn').onclick = function() {
+            window.location.href = '/logout'; // Redirect to the logout route
+        };
+
+        const currentPath = window.location.pathname;
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

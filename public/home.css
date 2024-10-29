@@ -1,0 +1,247 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.nav-bar {
+    background-color: #333;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav-link {
+    margin: 0 20px; /* Horizontal margin only */
+    color: #fff;
+    text-decoration: none;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.nav-link.active {
+    color: #f39c12; /* Active link color */
+    font-weight: bold;
+    border-bottom: 2px solid #f39c12; /* Underline to indicate it's active */
+}
+
+.nav-link:hover {
+    color: #ccc;
+}
+
+.text-overlay {
+    position: absolute;
+    top: 10px; /* Adjusts the distance from the top of the container */
+    left: 15px; /* Adjusts the distance from the left of the container */
+    font-size: 28px; /* Adjust the text size */
+    color: #fff; /* Text color */
+    text-shadow: 2px 2px 5px rgba(238, 255, 2, 0.993); /* Shadow for text */
+    font-family: 'Arial', sans-serif; /* Clean font */
+    z-index: 1; /* Text is on top of images */
+}
+
+.nature-arts-description, .famous-artist-description, .famous-arts-description, .animal-pics-description {
+    margin: 20px; /* Space around the paragraph */
+    padding: 15px; /* Inner spacing */
+    background-color: rgba(255, 255, 255, 0.8); /* Light background with transparency */
+    border-radius: 10px; /* Rounded corners */
+    color: #333; /* Dark text color */
+    font-size: 16px; /* Font size */
+    line-height: 1.6; /* Line height for better readability */
+    font-family: 'Georgia', serif; /* Elegant font */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+/* Optional: Add a hover effect for the description */
+.nature-arts-description:hover {
+    background-color: rgba(255, 255, 255, 1); /* Change background on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.profile-image, .brand-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #fff;
+    transition: transform 0.3s ease-in-out;
+}
+
+.profile-image:hover, .brand-logo:hover {
+    transform: scale(1.1);
+}
+
+/* Container for the entire slider */
+.slider-container {
+    width: 100%;
+    height: 350px; /* Adjust the height as needed */
+    overflow: hidden;
+    position: relative;
+    margin-top: 5px; /* Space after the nav */
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #ff7e5f, #feb47b, #86a8e7, #91eae4); /* Gradient background */
+    background-size: 400% 400%; /* Make the gradient animated */
+    animation: gradientBG 4s ease infinite; /* Animate the gradient */
+    padding: 15px; /* Inner spacing */
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3); /* Shadow effect */
+    z-index: 0; /* Ensure it's behind other content */
+}
+
+/* Smooth transition for the gradient */
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* The main slider that holds all slides */
+.slider {
+    display: flex;
+    width: 400%; /* 100% for each image (4 images = 400%) */
+    animation: slide 16s infinite; /* Slower sliding animation */
+}
+
+/* Each slide should take up 25% of the total width (since there are 4 images) */
+.slide {
+    width: 24%; /* 4 slides, so 100% / 4 = 25% */
+    flex-shrink: 0;
+    margin-right: 10px; /* Add space between slides */
+}
+
+.slide:last-child {
+    margin-right: 0; /* Remove margin on the last slide */
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
+    border-radius: 20px; /* Rounded corners for images */
+    object-fit: cover; /* Ensure the image fits nicely within the container */
+}
+
+/* Animation to slide the images */
+@keyframes slide {
+    0% { transform: translateX(0%); }
+    20% { transform: translateX(0%); } /* Pause on the first image */
+    25% { transform: translateX(-25%); }
+    45% { transform: translateX(-25%); } /* Pause on the second image */
+    50% { transform: translateX(-50%); }
+    70% { transform: translateX(-50%); } /* Pause on the third image */
+    75% { transform: translateX(-75%); }
+    95% { transform: translateX(-75%); } /* Pause on the fourth image */
+    100% { transform: translateX(0%); }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .text-overlay {
+        font-size: 20px; /* Smaller text on smaller screens */
+    }
+
+    .nature-arts-description, .famous-artist, .famous-arts, .animal-pics-description {
+        font-size: 14px; /* Smaller font size for descriptions */
+        margin: 10px; /* Less margin on small screens */
+        padding: 10px; /* Less padding */
+    }
+
+    .slider-container {
+        height: 250px; /* Smaller height for the slider on smaller screens */
+    }
+
+    .slide {
+        width: 100%; /* Each slide takes full width on small screens */
+        margin-right: 0; /* No margin between slides on small screens */
+    }
+}
+
+.about-container {
+    margin: 20px; /* Space around the container */
+    padding: 15px; /* Inner spacing */
+    background-color: rgba(255, 255, 255, 0.9); /* Light background with transparency */
+    border-radius: 10px; /* Rounded corners */
+    color: #333; /* Dark text color */
+    font-size: 16px; /* Font size */
+    line-height: 1.6; /* Line height for better readability */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow effect */
+}
+
+.about-container h1, .about-container h2 {
+    color: #f39c12; /* Heading color */
+}
+
+footer {
+    background-color: #333; /* Black background */
+    color: white; /* Text color */
+    text-align: center; /* Centered text */
+    padding: 10px; /* Padding for the footer */
+    position: relative; /* Ensure the footer stays relative to the body */
+    bottom: 0px; /* Stick to the bottom */
+    width: 100%; /* Full width */
+}
+
+footer a {
+    color: #f39c12; /* Link color */
+    text-decoration: none; /* Remove underline from links */
+    transition: color 0.3s; /* Smooth transition for hover effect */
+}
+
+footer a:hover {
+    text-decoration: underline; /* Underline on hover */
+}
+
+main {
+    flex: 1; /* This ensures that the main content takes up the remaining space */
+}
+
+.profile-container {
+    margin: 20px;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9); /* Light background for profile */
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Shadow effect */
+}
+
+.profile-info {
+    display: flex;
+    align-items: center; /* Align items vertically centered */
+}
+
+.profile-image-large {
+    width: 100px; /* Set a fixed width */
+    height: 100px; /* Set a fixed height */
+    border-radius: 50%; /* Make it circular */
+    margin-right: 20px; /* Space between image and text */
+}
+
+.profile-details h2 {
+    margin: 0; /* Remove default margin */
+    color: #333; /* Text color */
+}
+
+.profile-details p {
+    margin: 5px 0; /* Margin for paragraphs */
+    color: #666; /* Lighter color for description */
+}
+
+.profile-details button {
+    padding: 10px 20px; /* Padding for button */
+    background-color: #f39c12; /* Button color */
+    color: #fff; /* Text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition */
+}
+
+.profile-details button:hover {
+    background-color: #e67e22; /* Darken color on hover */
+}
